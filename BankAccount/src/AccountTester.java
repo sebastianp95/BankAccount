@@ -20,7 +20,7 @@ public class AccountTester {
 			SavingsAccount savingsAccount = (SavingsAccount)o;
 			System.out.println(savingsAccount.toString());
 			System.out.println(savingsAccount.actName);
-	
+
 
 		}
 		else
@@ -48,23 +48,27 @@ public class AccountTester {
 		double overdraftLimit= input.nextDouble();
 
 		checkingAccount = new CheckingAccount(bankName, actNumber, actName, balance);
-		
+
 		System.out.println("===== Checks Deposited=====");
 		System.out.println("Enter check number, routing number, amount, date (mm/dd/yyyy), and bank name. \n Enter 0(zero) to finish");
-         int checkNumber= input.nextInt();
-         int routingNumber=input.nextInt();
-         double amount=input.nextDouble();
-         String date=input.next();
-         bankName=input.next();
-         
-         try {
+
+
+		int checkNumber= input.nextInt();
+		int routingNumber=input.nextInt();
+		double amount=input.nextDouble();
+		String date=input.next();
+		bankName=input.next();
+
+		try {
 			Date date1= new SimpleDateFormat("dd/MM/yyyy").parse(date);
+			check=new Check(checkNumber, routingNumber, date1, amount,  bankName);
+
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			System.out.println("FGormat Incorrect");
 			e.printStackTrace();
 		}
-//         check=new Check(int number_, int)
-         
+
+
 
 		//		System.out.println(checkingAccount.getBankName()+" "+checkingAccount.getAccuntName()+" "+ checkingAccount.getBalance());
 
