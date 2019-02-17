@@ -31,7 +31,7 @@ public class AccountTester {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		Account checkingAccount = new CheckingAccount("BankOfAm", "123456", "SebastianPerez", 10000);
+		Account checkingAccount = new CheckingAccount("BankOfAm", "123456", "SebastianPerez", 10000, 1.5,100);
 		Account savingAccount = new SavingsAccount("BankOfAm", "123456", "SebastianPerez", 100000000, 1.5);
 		Check check = new Check();
 		Account Account = new Account();
@@ -47,7 +47,7 @@ public class AccountTester {
 		double annualInterestRate=input.nextDouble();
 		double overdraftLimit= input.nextDouble();
 
-		checkingAccount = new CheckingAccount(bankName, actNumber, actName, balance);
+		checkingAccount = new CheckingAccount(bankName, actNumber, actName, balance,annualInterestRate,overdraftLimit);
 
 		System.out.println("===== Checks Deposited=====");
 		System.out.println("Enter check number, routing number, amount, date (mm/dd/yyyy), and bank name. \n Enter 0(zero) to finish");
@@ -64,12 +64,16 @@ public class AccountTester {
 			check=new Check(checkNumber, routingNumber, date1, amount,  bankName);
 
 		} catch (ParseException e) {
-			System.out.println("FGormat Incorrect");
+			System.out.println("Format Incorrect");
 			e.printStackTrace();
 		}
 
-
-
+        
+		
+		
+		
+		
+		
 		//		System.out.println(checkingAccount.getBankName()+" "+checkingAccount.getAccuntName()+" "+ checkingAccount.getBalance());
 
 		displayAccount(checkingAccount);

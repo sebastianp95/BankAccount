@@ -6,11 +6,18 @@ public class CheckingAccount extends Account  {
     ArrayList<Check> checkDeposited, checksCLeared;
 	int lastCheckCleared;
 	
-	public CheckingAccount(String bankName_, String actNumber_, String actName_, double balance_) {	
+	public CheckingAccount(String bankName_, String actNumber_, String actName_, double balance_,double annualInterestRate_ ,double overDraftLimit_) {	
 		bankName=bankName_;
 		actNumber=actNumber_;
 		actName=actName_;
 		balance=balance_;
+		annualInterestRate=annualInterestRate_;
+		if(overDraftLimit_>0)
+			overdraftLimit=overDraftLimit_;
+		else
+			overdraftLimit=DEFAULT_OVERDRAFT_LIMIT;
+		
+
 	}
 	
 	public CheckingAccount() {}
