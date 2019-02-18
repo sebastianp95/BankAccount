@@ -12,8 +12,8 @@ public class AccountTester {
 		if(o instanceof CheckingAccount) {
 			CheckingAccount checkingAccount = (CheckingAccount)o;
 			System.out.println(checkingAccount.getCreationDate());
-			System.out.println(checkingAccount.getAccountName());
 			System.out.println(checkingAccount.getBankName());
+			
 
 		}
 		else if(o instanceof SavingsAccount) {
@@ -26,18 +26,21 @@ public class AccountTester {
 		else
 			System.out.println("Account not found.");
 	}
+	
+	
+		
+	
 
 
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		Account checkingAccount = new CheckingAccount("BankOfAm", "123456", "SebastianPerez", 10000, 1.5,100);
+		CheckingAccount checkingAccount = new CheckingAccount();
 		Account savingAccount = new SavingsAccount("BankOfAm", "123456", "SebastianPerez", 100000000, 1.5);
 		//		Check check = new Check();
 		Account Account = new Account();
 
 
-		System.out.println(checkingAccount.getAccountName()+" "+ checkingAccount.getBalance());
 		System.out.println("Enter bank name");
 		String bankName=input.nextLine();
 		System.out.println("Enter account number, account name (no spaces), initial balance, annual interest rate(in decimals) and overdraft limit");
@@ -49,16 +52,11 @@ public class AccountTester {
 
 		checkingAccount = new CheckingAccount(bankName, actNumber, actName, balance,annualInterestRate,overdraftLimit);
 
-		System.out.println("===== Checks Deposited=====");
+		System.out.println("\n===== Checks Deposited=====");
 		System.out.println("Enter check number, routing number, amount, date (mm/dd/yyyy), and bank name. \n Enter 0(zero) to finish");
 
 
-
-
 		while(true){
-
-
-
 			int checkNumber= input.nextInt();
 			if(checkNumber==0)
 				break;
@@ -77,14 +75,14 @@ public class AccountTester {
 			
 			Check check=new Check(checkNumber, routingNumber, date1, amount,  bankName);
 			
-			CheckingAccount checkingAccountTemp = new CheckingAccount();
+//			CheckingAccount checkingAccountTemp = new CheckingAccount();
 			
 			//add ArrayList type CHeck
-			checkingAccountTemp.depositCheck(check);
+			checkingAccount.depositCheck(check);
 			
 		}
 		
-		System.out.println("===== Checks Cleared=====");
+		System.out.println("\n===== Checks Cleared=====");
 		System.out.println("Enter check number,  amount, date (mm/dd/yyyy). \n Enter 0(zero) to finish");
 
 
@@ -108,17 +106,17 @@ public class AccountTester {
 			
 			Check check=new Check(checkNumber, amount,date1);
 			
-			CheckingAccount checkingAccountTemp = new CheckingAccount();
 			
-			//add ArrayList type CHeck
-			checkingAccountTemp.depositCheck(check);
+			
+			checkingAccount.clearCheck(check);
+			
 			
 		}
 
 
-		CheckingAccount checkingAccountTemp = new CheckingAccount();
+		checkingAccount.displayAllChecks();
 		displayAccount(checkingAccount);
-		checkingAccountTemp.displayAllChecks();
+		
 	}
 
 }
