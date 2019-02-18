@@ -41,6 +41,7 @@ public class AccountTester {
 		Account Account = new Account();
 
 
+	   System.out.println("Esta es la prueba para verificar el funcionamiento de Github");
 		System.out.println("Enter bank name");
 		String bankName=input.nextLine();
 		System.out.println("Enter account number, account name (no spaces), initial balance, annual interest rate(in decimals) and overdraft limit");
