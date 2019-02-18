@@ -12,7 +12,7 @@ public class AccountTester {
 		if(o instanceof CheckingAccount) {
 			CheckingAccount checkingAccount = (CheckingAccount)o;
 			System.out.println(checkingAccount.getCreationDate());
-			System.out.println(checkingAccount.getAccuntName());
+			System.out.println(checkingAccount.getAccountName());
 			System.out.println(checkingAccount.getBankName());
 
 		}
@@ -33,11 +33,11 @@ public class AccountTester {
 		Scanner input = new Scanner(System.in);
 		Account checkingAccount = new CheckingAccount("BankOfAm", "123456", "SebastianPerez", 10000, 1.5,100);
 		Account savingAccount = new SavingsAccount("BankOfAm", "123456", "SebastianPerez", 100000000, 1.5);
-		Check check = new Check();
+		//		Check check = new Check();
 		Account Account = new Account();
 
 
-		System.out.println(checkingAccount.getAccuntName()+" "+ checkingAccount.getBalance());
+		System.out.println(checkingAccount.getAccountName()+" "+ checkingAccount.getBalance());
 		System.out.println("Enter bank name");
 		String bankName=input.nextLine();
 		System.out.println("Enter account number, account name (no spaces), initial balance, annual interest rate(in decimals) and overdraft limit");
@@ -53,30 +53,72 @@ public class AccountTester {
 		System.out.println("Enter check number, routing number, amount, date (mm/dd/yyyy), and bank name. \n Enter 0(zero) to finish");
 
 
-		int checkNumber= input.nextInt();
-		int routingNumber=input.nextInt();
-		double amount=input.nextDouble();
-		String date=input.next();
-		bankName=input.next();
 
-		try {
-			Date date1= new SimpleDateFormat("dd/MM/yyyy").parse(date);
-			check=new Check(checkNumber, routingNumber, date1, amount,  bankName);
 
-		} catch (ParseException e) {
-			System.out.println("Format Incorrect");
-			e.printStackTrace();
+		while(true){
+
+
+
+			int checkNumber= input.nextInt();
+			if(checkNumber==0)
+				break;
+			int routingNumber=input.nextInt();
+			double amount=input.nextDouble();
+			String date=input.next();
+			bankName=input.nextLine();
+
+			Date date1 = null;
+			try {
+				date1= new SimpleDateFormat("dd/MM/yyyy").parse(date);
+			} catch (ParseException e) {
+				System.out.println("Date format Incorrect");
+				e.printStackTrace();
+			}
+			
+			Check check=new Check(checkNumber, routingNumber, date1, amount,  bankName);
+			
+			CheckingAccount checkingAccountTemp = new CheckingAccount();
+			
+			//add ArrayList type CHeck
+			checkingAccountTemp.depositCheck(check);
+			
+		}
+		
+		System.out.println("===== Checks Cleared=====");
+		System.out.println("Enter check number,  amount, date (mm/dd/yyyy). \n Enter 0(zero) to finish");
+
+
+		while(true){
+
+
+			int checkNumber= input.nextInt();
+			if(checkNumber==0)
+				break;
+			double amount=input.nextDouble();
+			String date=input.nextLine();
+
+			Date date1 = null;
+			try {
+				date1= new SimpleDateFormat("dd/MM/yyyy").parse(date);
+			} catch (ParseException e) {
+				System.out.println("Date format Incorrect");
+				e.printStackTrace();
+			}
+			
+			
+			Check check=new Check(checkNumber, amount,date1);
+			
+			CheckingAccount checkingAccountTemp = new CheckingAccount();
+			
+			//add ArrayList type CHeck
+			checkingAccountTemp.depositCheck(check);
+			
 		}
 
-        
-		
-		
-		
-		
-		
-		//		System.out.println(checkingAccount.getBankName()+" "+checkingAccount.getAccuntName()+" "+ checkingAccount.getBalance());
 
+		CheckingAccount checkingAccountTemp = new CheckingAccount();
 		displayAccount(checkingAccount);
+		checkingAccountTemp.displayAllChecks();
 	}
 
 }

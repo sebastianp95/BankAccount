@@ -14,32 +14,31 @@ public class Account {
 
 	}
 
-	
+
 	public double getBalance(){ return balance; }
 	public double getInterestRate() { return annualInterestRate; }
-	public String getAccuntName() { return actName; }
+	 public String getAccountName() { return actName; }
 	public String getBankName() { return bankName; }
 
 	public void setInterest(double rate) {
-
+		annualInterestRate= rate;
 	}
 	public void deposit(double amt) {
 		balance=balance+amt;
 
 	}
 	public void withdraw(double amt) {
-		
+
 		if(balance>amt)
 			balance=balance-amt;
-	
+
 
 	}
 
-	public Date getCreationDate() {
-		return creationDate;}
+	public Date getCreationDate() {return creationDate;}
 
 	public void applyInterest() {
-
+		balance= balance*annualInterestRate;
 	}
 
 
